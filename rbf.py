@@ -56,16 +56,20 @@ class RBFnetwork(object):
     return np.dot(np.linalg.pinv(X), Y)
 
 
-  def fit(self, data, label):
+  def fit(self, data, label, custom_centers, neuron_centers=None):
     # Get neuron centers
 
     # Randomly select neuron centers
     # random_args = np.random.permutation(data.shape[0]).tolist()
     # self.centers = [data[arg] for arg in random_args][:self.hidden_neurons]
 
-    # Use k-means
-    self.centers.extend(self.kmeans(data, label, self.hidden_neurons/2))
-    # print('Length of center neurons', len(self.centers))
+    if custom_centers:
+      # calculated from SOM network
+      self.centers = np.array(neuron_centers)
+    else:
+      # Use k-means
+      self.centers.extend(self.kmeans(data, label, self.hidden_neurons//2))
+      # print('Length of center neurons', len(self.centers))
 
     # Test case center neurons
     # self.centers = [[1, 1], [0, 0]]
@@ -73,12 +77,14 @@ class RBFnetwork(object):
     # Get RBF functions
     # Calculate RBF activation signal
     # Here we use Gaussian
+
     rbf_signal = self._calc_activation(data)
 
     # add bias term
     rbf_signal = np.insert(rbf_signal, len(rbf_signal[0]), 1.0, axis=1)
 
     self.weights = self._lin_reg_method(rbf_signal, label)
+
   
   def predict(self, data):
 
@@ -91,7 +97,7 @@ class RBFnetwork(object):
     return predictions
 
   def accuracy(self, out, desired):
-    diff = 0.99
+    diff = 0.9
     total_samples = len(desired)
     good_estimate = 0
     
