@@ -20,6 +20,7 @@ class RBFnetwork(object):
                           # and output layer
 
   def kmeans(self, data, label, num_neurons):
+    # k-means method for calculating neuron centers
     selected_centers = []
 
     for a_class in np.unique(label):
@@ -43,8 +44,9 @@ class RBFnetwork(object):
 
   def _calc_activation(self, data):
     # Calculate the activation signal at each center neurons
-
     signal_out = np.zeros((data.shape[0], self.hidden_neurons))
+
+    # Iterate through all inputs
     for i in range(len(data)):
       for j in range(self.hidden_neurons):
         signal_out[i, j] = self._rbf_gauss(data[i], self.centers[j])
@@ -52,16 +54,13 @@ class RBFnetwork(object):
     return signal_out
 
   def _lin_reg_method(self, X, Y):
-    # pinv(X * X transpose) * X transpose * Y
+    # Perform linear regression
     return np.dot(np.linalg.pinv(X), Y)
-
 
   def fit(self, data, label, custom_centers, neuron_centers=None):
     # Get neuron centers
-
-    # Randomly select neuron centers
-    # random_args = np.random.permutation(data.shape[0]).tolist()
-    # self.centers = [data[arg] for arg in random_args][:self.hidden_neurons]
+    # use provided neuron centers
+    # otherwise use k-means to determine
 
     if custom_centers:
       # calculated from SOM network
@@ -71,22 +70,21 @@ class RBFnetwork(object):
       self.centers.extend(self.kmeans(data, label, self.hidden_neurons//2))
       # print('Length of center neurons', len(self.centers))
 
-    # Test case center neurons
-    # self.centers = [[1, 1], [0, 0]]
-
-    # Get RBF functions
-    # Calculate RBF activation signal
-    # Here we use Gaussian
+    # Get RBF functions, here we use Gaussian
+    # Then calculate RBF activation signals
 
     rbf_signal = self._calc_activation(data)
 
     # add bias term
     rbf_signal = np.insert(rbf_signal, len(rbf_signal[0]), 1.0, axis=1)
 
+    # Calculate weights from RBF function to output layer
+    # Using linear regression method
     self.weights = self._lin_reg_method(rbf_signal, label)
 
   
   def predict(self, data):
+    # Calculate the outputs of the RBF network
 
     signal_out = self._calc_activation(data)
 
@@ -94,17 +92,33 @@ class RBFnetwork(object):
     signal_out = np.insert(signal_out, len(signal_out[0]), 1.0, axis=1)
     
     predictions = np.dot(signal_out, self.weights)
+    
     return predictions
 
   def accuracy(self, out, desired):
+    # Calculate the accuracy of RBF network
     diff = 0.9
     total_samples = len(desired)
     good_estimate = 0
     
     for i in range(total_samples):
-      # print(out[i] - desired[i])
       if(abs(out[i] - desired[i]) <= diff):
         good_estimate += 1
 
 
     return float(good_estimate) / total_samples * 100
+
+  def classify(self, data, labels):
+    # Classify the input data based on their outputs
+    diff = 0.9
+    total_outputs = len(data)
+    output = []
+    
+    unique = np.unique(labels)
+
+    for i in range(total_outputs):
+      for label in unique:
+        if(abs(label - data[i]) <= diff):
+          output.append(label)
+
+    return output

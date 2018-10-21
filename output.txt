@@ -1,0 +1,53 @@
+Script started on Sun 21 Oct 2018 12:54:33 AM
+]0;yisheng@yisheng-X550LD: ~/Github/rbf-som-assignment[01;32myisheng@yisheng-X550LD[00m:[01;34m~/Github/rbf-som-assignment[00m$ exitpython implement.py exit[Kpython implement.py 
+Initializing...
+Building SOM Network to calculate center neurons for RBF network
+Obtained center neurons!!
+Building RBF network...
+RBF network is set up...
+Predicting the output...
+Accuracy of overall network:  94.8484848485 %
+Predicting the classes for each in test data
+Outputting the predicted labels
+[1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
+[10 11] are of class [-1.  1.] respectively
+]0;yisheng@yisheng-X550LD: ~/Github/rbf-som-assignment[01;32myisheng@yisheng-X550LD[00m:[01;34m~/Github/rbf-som-assignment[00m$ python implement.py 
+Initializing...
+Building SOM Network to calculate center neurons for RBF network
+Obtained center neurons!!
+Building RBF network...
+RBF network is set up...
+Predicting the output...
+Accuracy of overall network:  94.8484848485 %
+Predicting the classes for each in test data
+Outputting the predicted labels
+[1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
+[ 9 11] of the samples are of class [-1.  1.] respectively
+]0;yisheng@yisheng-X550LD: ~/Github/rbf-som-assignment[01;32myisheng@yisheng-X550LD[00m:[01;34m~/Github/rbf-som-assignment[00m$ python implement.py 
+Initializing...
+Building SOM Network to calculate center neurons for RBF network
+Obtained center neurons!!
+Building RBF network...
+RBF network is set up...
+Predicting the output...
+Accuracy of overall network:  94.8484848485 %
+Predicting the classes for each in test data
+Outputting the predicted labels
+[1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
+[10 11] of the samples are of class [-1.  1.] respectively
+]0;yisheng@yisheng-X550LD: ~/Github/rbf-som-assignment[01;32myisheng@yisheng-X550LD[00m:[01;34m~/Github/rbf-som-assignment[00m$ python implement.py 
+Initializing...
+Building SOM Network to calculate center neurons for RBF network
+Obtained center neurons!!
+Building RBF network...
+RBF network is set up...
+Predicting the output...
+Accuracy of overall network:  95.1515151515 %
+Predicting the classes for each in test data
+Outputting the predicted labels
+[1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0, -1.0, 1.0]
+[10 11] of the samples are of class [-1.  1.] respectively
+]0;yisheng@yisheng-X550LD: ~/Github/rbf-som-assignment[01;32myisheng@yisheng-X550LD[00m:[01;34m~/Github/rbf-som-assignment[00m$ exit
+exit
+
+Script done on Sun 21 Oct 2018 12:57:37 AM
